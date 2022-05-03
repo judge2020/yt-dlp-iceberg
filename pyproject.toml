@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "yt-dlp-iceberg"
+version = "0.1.0"
+description = ""
+authors = ["Hunter <8601934+judge2020@users.noreply.github.com>"]
+
+[tool.poetry.scripts]
+yt-dlp-iceberg = "yt_dlp_iceberg.main:run"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+strictyaml = "^1.6.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
