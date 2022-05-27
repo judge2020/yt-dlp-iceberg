@@ -1,4 +1,4 @@
-from strictyaml import load, Map, Str, Int, Seq, YAMLError, MapPattern, Optional
+from strictyaml import load, Map, Str, Int, Seq, YAMLError, Bool, MapPattern, Optional
 from pathlib import Path
 import os
 
@@ -10,11 +10,18 @@ if not (config_file_name and os.path.exists(config_file_name)):
 schema = Map({
     Optional("base_folder"): Str(),
     Optional("ytdlp_exec"): Str(),
+    Optional("update"): Bool(),
+    Optional("presets"): MapPattern(Str(), Map({
+        Optional("interval_minutes"): Int(),
+        Optional("post_command"): Str(),
+        Optional("options"): Seq(Str()),
+    })),
     "projects": MapPattern(Str(), Map({
         "target": Str(),
-        "interval_minutes": Int(),
+        Optional("interval_minutes"): Int(),
         Optional("folder"): Str(),
         Optional("post_command"): Str(),
+        Optional("preset"): Str(),
         Optional("options"): Seq(Str()),
     }))})
 

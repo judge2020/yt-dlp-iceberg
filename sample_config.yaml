@@ -1,11 +1,10 @@
 #base_folder: X:\temp # optional; will os.chdir to this folder before performing downloads. In this example, the videos for project wow would end up as /data/wow/something.mkv
-#ytdlp_exec: /usr/bin/yt-dlp # optional; custom yt-dlp executable path
-projects:
-  wow:
-    #folder: wow # optional; to override the target storage folder. It is not recommended to use an absolute path for this.
-    target: https://example.com/yt-dlp-video-website-here
+#ytdlp_exec: /usr/bin/yt-dlp # optional; custom yt-dlp executable path. Default is just 'yt-dlp'
+update: true # will run yt-dlp --update beforehand
+presets:
+  one:
     interval_minutes: 1440
-    #post_command: rclone _FOLDER gdrive:/ # optional; to run a command after archival is finished. Will not run if yt-dlp exits with a non-zero error
+    #post_command: rclone _FOLDER gdrive:/ # optional
     options: # other options you want to pass to yt-dlp; the only thing you can't override is --download-archive
       ### these are generally good defaults for a private archival collection; if you end up making it public, you might want to audit the .info.json files for PII
       - -f "bestvideo*+bestaudio/best"
@@ -15,3 +14,15 @@ projects:
       #- --write-description Write video description to a .description
       ### workarounds: this is good practice, since it'll make your requests seem more like a human
       - --min-sleep-interval 1 --max-sleep-interval 2 # sleeps between 1 and 2 seconds between requests
+projects:
+  wow:
+    #folder: wow # optional; to override the target storage folder. It is not recommended to use an absolute path for this.
+    target: https://example.com/yt-dlp-video-website-here
+    interval_minutes: 1440
+    #post_command: rclone _FOLDER gdrive:/ # optional; to run a command after archival is finished. Will not run if yt-dlp exits with a non-zero error
+    options: # see preset[].options
+      - --write-info-json
+      - --min-sleep-interval 7 --max-sleep-interval 10
+  cool:
+    target: https://youtu.be/VIDEO
+    preset: one
