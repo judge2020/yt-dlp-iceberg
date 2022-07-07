@@ -36,9 +36,9 @@ def perform():
 
         # replace preset in-place with a Preset object
         if _project.get('preset'):
-            if _project.get('preset') not in parsed_data['presets'].keys():
+            if str(_project.get('preset')) not in parsed_data['presets'].keys():
                 raise RuntimeError(f"Preset {_project['preset']} is not a defined preset!")
-            print(_project['preset'])
+            print("Using preset:", _project['preset'])
             _project['preset'] = Preset(**(parsed_data['presets'][_project['preset']]))
         project = Project(**_project)
         if not pathlib.Path(project.folder).is_dir():

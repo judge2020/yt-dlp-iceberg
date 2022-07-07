@@ -46,7 +46,9 @@ class Project:
         text = pathlib.Path("last_interval.txt")
         text.write_text(str(int(time.time())))
 
-    def run_ytdlp(self, custom_exec: str = "yt-dlp"):
+    def run_ytdlp(self, custom_exec: str):
+        if not custom_exec:
+            custom_exec = "yt-dlp"
         if ' ' in custom_exec:
             cmd = '"' + custom_exec + '" '
         else:
