@@ -20,6 +20,8 @@ args = parser.parse_args()
 
 
 def perform():
+    os.chdir(pathlib.Path(__file__).parent.resolve())
+    os.chdir('..')
     parsed_data = get_parsed_data()
     if parsed_data.get('base_folder', None):
         if not pathlib.Path(parsed_data["base_folder"]).is_dir():
