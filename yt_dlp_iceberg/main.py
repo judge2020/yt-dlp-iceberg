@@ -4,7 +4,7 @@ import pathlib
 import time
 from subprocess import Popen
 
-from yt_dlp_iceberg.config import parsed_data
+from yt_dlp_iceberg.config import get_parsed_data
 from yt_dlp_iceberg.preset import Preset
 from yt_dlp_iceberg.project import Project
 
@@ -20,6 +20,7 @@ args = parser.parse_args()
 
 
 def perform():
+    parsed_data = get_parsed_data()
     if parsed_data.get('base_folder', None):
         if not pathlib.Path(parsed_data["base_folder"]).is_dir():
             raise FileNotFoundError(
@@ -37,7 +38,7 @@ def perform():
         # replace preset in-place with a Preset object
         if _project.get('preset'):
             if str(_project.get('preset')) not in parsed_data['presets'].keys():
-                raise RuntimeError(f"Preset {_project['preset']} is not a defined preset!")
+                print(f"Preset {_project['preset']} is not a defined preset!")
             print("Using preset:", _project['preset'])
             _project['preset'] = Preset(**(parsed_data['presets'][_project['preset']]))
         project = Project(**_project)

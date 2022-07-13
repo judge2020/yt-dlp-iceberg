@@ -25,4 +25,6 @@ schema = Map({
         Optional("options"): Seq(Str()),
     }))})
 
-parsed_data = load(Path(config_file_name).read_text('utf-8'), schema).data
+
+def get_parsed_data():
+    return load(Path(config_file_name).read_text('utf-8'), schema).data
