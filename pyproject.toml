@@ -10,7 +10,7 @@ yt-dlp-iceberg = "yt_dlp_iceberg.main:run"
 [tool.poetry.dependencies]
 python = ">=3.9"
 strictyaml = "^1.6.1"
-yt-dlp = "^2023.1.6"
+yt-dlp = "^2023.9.24"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
